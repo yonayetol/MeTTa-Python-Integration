@@ -1,0 +1,28 @@
+body {
+  background-color: #dfe1e4;
+  font-family: Arial, sans-serif;
+}
+
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.card-container {
+  max-width: 700px;
+  width: 100%;
+}
+
+.summary-box {
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre-wrap; /* allows line wrapping */
+  word-wrap: break-word;  /* ensures no overflow */
+  background-color: #eef6fb;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
