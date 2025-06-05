@@ -4,11 +4,13 @@ from flask_cors import CORS
 from hyperon.ext import register_atoms
 from hyperon.atoms import OperationAtom
 from hyperon import MeTTa
+import os
 
 app = Flask(__name__)
 CORS(app)  # Allow frontend requests from localhost:3000
 
-genai.configure(api_key="AIzaSyChGxk4M-RrG4q7_Oi-sPQgGIRBx8snHcs")
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 
 def AskGemini(question: str):
     print("in AskGemini question is -->", question, "\n")
