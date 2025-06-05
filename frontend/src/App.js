@@ -29,6 +29,31 @@ export default function App() {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chromosome: chromosome,
+          summary: summary,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("✅ Saved to server-side file successfully!");
+      } else {
+        alert(`❌ Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("❌ Failed to save. Please try again.");
+    }
+  };
+
   return (
     <div className="page-center">
       <div className="card shadow card-container">
@@ -46,7 +71,11 @@ export default function App() {
             />
           </div>
 
-          <button className="btn btn-primary w-100" onClick={handleSubmit} disabled={loading}>
+          <button
+            className="btn btn-primary w-100"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
             {loading ? "Processing..." : "Summarize"}
           </button>
 
@@ -66,7 +95,7 @@ export default function App() {
               </div>
               <button
                 className="btn btn-success mt-3"
-                onClick={() => alert("✅ Saved to server-side file automatically.")}
+                onClick={handleSave}
               >
                 Save this to file
               </button>
